@@ -1,7 +1,19 @@
 import "./App.css";
+import useDarkMode from "./hooks/useDarkMode";
 
 function App() {
-  return <></>;
+  const { toggleDarkMode } = useDarkMode();
+
+  return (
+    <>
+      <button
+        onClick={() => toggleDarkMode()}
+        className="p-2 rounded-md border"
+      >
+        Set Theme
+      </button>
+    </>
+  );
 }
 
 export default App;
