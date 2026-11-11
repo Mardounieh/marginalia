@@ -1,26 +1,36 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* ========================================
-  2. Design Tokens
+  1. Design Tokens
 ======================================== */
 
 :root {
   color-scheme: light;
 
-  /* Backgrounds */
-  --background: #ffffff;
-  --foreground: #171717;
-  --surface: #f8fafc;
+  /* Primitive Colors */
+  --iron-gall-ink: #1C1815;
+  --vellum: #F6F0E2;
+  --parchment: #E6DAC0;
+  --rubric-red: #A63A25;
+  --lapis: #28467F;
+  --gold-leaf: #B58A2F;
 
-  /* Brand */
-  --primary: #6d28d9;
-  --primary-foreground: #ffffff;
+  /* Semantic Colors */
+  --background: var(--vellum);
+  --foreground: var(--iron-gall-ink);
 
-  /* UI */
-  --border: #e2e8f0;
-  --muted: #64748b;
+  --surface: var(--parchment);
+  --surface-elevated: var(--vellum);
+
+  --primary: var(--rubric-red);
+  --primary-foreground: var(--vellum);
+
+  --border: #D6C9B2;
+  --muted: #756B5D;
+
+  --ring: var(--rubric-red);
 
   /* Other */
   --radius: 0.5rem;
@@ -29,59 +39,99 @@
 .dark {
   color-scheme: dark;
 
-  /* Backgrounds */
-  --background: #0f172a;
-  --foreground: #f8fafc;
-  --surface: #1e293b;
+  /* Primitive Colors */
+  --night-vellum: #16130F;
+  --candle-soot: #221D19;
+  --ash: #3A332D;
+  --aged-vellum: #EFE6D2;
+  --rubric-glow: #D9644B;
+  --lapis-light: #7F9FDB;
+  --gold-glint: #D4A84A;
 
-  /* Brand */
-  --primary: #a78bfa;
-  --primary-foreground: #171717;
+  /* Semantic Colors */
+  --background: var(--night-vellum);
+  --foreground: var(--aged-vellum);
 
-  /* UI */
-  --border: #334155;
-  --muted: #94a3b8;
+  --surface: var(--candle-soot);
+  --surface-elevated: var(--ash);
+
+  --primary: var(--rubric-glow);
+  --primary-foreground: var(--night-vellum);
+
+  --border: var(--ash);
+  --muted: #A99C88;
+
+  --ring: var(--rubric-glow);
 }
 
-
 /* ========================================
-  3. Tailwind Theme Integration
+  2. Tailwind Theme Integration
 ======================================== */
 
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
 
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
 
   --color-border: var(--border);
   --color-muted: var(--muted);
+  --color-ring: var(--ring);
 
-  --radius-md: var(--radius);
+  /* Brand Palette */
+  --color-iron-gall-ink: var(--iron-gall-ink);
+  --color-vellum: var(--vellum);
+  --color-parchment: var(--parchment);
+  --color-rubric-red: var(--rubric-red);
+  --color-lapis: var(--lapis);
+  --color-gold-leaf: var(--gold-leaf);
 
+  --color-night-vellum: var(--night-vellum);
+  --color-candle-soot: var(--candle-soot);
+  --color-ash: var(--ash);
+  --color-aged-vellum: var(--aged-vellum);
+  --color-rubric-glow: var(--rubric-glow);
+  --color-lapis-light: var(--lapis-light);
+  --color-gold-glint: var(--gold-glint);
+
+  /* Typography */
   --font-sans: "Inter", sans-serif;
+  --font-fa: "Vazirmatn", sans-serif;
+
+  /* Radius */
+  --radius-md: var(--radius);
 }
 
-
 /* ========================================
-  4. Global Styles
+  3. Global Styles
 ======================================== */
 
 @layer base {
-  body {
-    @apply bg-background text-foreground font-sans;
-
-    min-height: 100vh;
-  }
-
   * {
     @apply border-border;
   }
 
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+
+    min-height: 100dvh;
+  }
+
   :focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
 }
